@@ -36,28 +36,28 @@ APEX PAY. is a full-stack, decoupled core banking application designed to handle
 This project is fully dockerized. You do not need Python or Node.js installed locally to run it.
 
 ### 1. Clone the repository
-\`\`\`bash
+```bash
 git clone https://github.com/yourusername/apex-pay.git
 cd apex-pay
-\`\`\`
+```
 
 ### 2. Build and start the containers
-\`\`\`bash
+```bash
 docker-compose up --build
-\`\`\`
+```
 *This command orchestrates the entire stack: PostgreSQL, Redis, Django API, Celery Worker, Celery Beat, and the Vite React app.*
 
 ### 3. Run Database Migrations
 Open a new terminal window while the containers are running:
-\`\`\`bash
+```bash
 docker-compose exec backend python manage.py migrate
-\`\`\`
+```
 
 ### 4. Create a Superuser
 You need an account to log into the frontend. Create one via the Django CLI:
-\`\`\`bash
+```bash
 docker-compose exec backend python manage.py createsuperuser
-\`\`\`
+```
 *(Once created, you can log into the Django Admin at `localhost:8000/admin` to manually create an `Account` for this user and fund it).*
 
 ### 5. Access the Application
@@ -68,12 +68,12 @@ docker-compose exec backend python manage.py createsuperuser
 
 ## API Reference
 
-| Endpoint | Method | Auth Required | Description |
-| :--- | :--- | :--- | :--- |
-| `/api/token/` | `POST` | No | Obtain JWT access and refresh tokens. |
-| `/api/token/refresh/` | `POST` | No | Refresh an expired access token. |
-| `/wallet/api/dashboard/` | `GET` | Yes | Fetch user balance and top 5 recent transactions. |
-| `/wallet/api/transfer/` | `POST` | Yes | Securely transfer funds to another account number. |
+| Endpoint                 | Method | Auth Required | Description                                        |
+| :----------------------- | :----- | :------------ | :------------------------------------------------- |
+| `/api/token/`            | `POST` | No            | Obtain JWT access and refresh tokens.              |
+| `/api/token/refresh/`    | `POST` | No            | Refresh an expired access token.                   |
+| `/wallet/api/dashboard/` | `GET`  | Yes           | Fetch user balance and top 5 recent transactions.  |
+| `/wallet/api/transfer/`  | `POST` | Yes           | Securely transfer funds to another account number. |
 
 ## Future Roadmap
 - Implement Plaid API for external bank funding.
