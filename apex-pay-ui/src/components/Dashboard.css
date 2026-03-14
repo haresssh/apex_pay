@@ -1,0 +1,92 @@
+/* --- Global Dark Theme --- */
+body {
+  background-color: #0a0a0a !important; 
+  color: #ffffff !important; /* Pure white text */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* --- The Bento Box Grid Cards --- */
+.hg-card {
+  background-color: #121212 !important; 
+  border-radius: 12px !important;
+  border: 1px solid #27272a !important; 
+  box-shadow: none !important; 
+  color: #ffffff !important;
+}
+
+/* --- Typography --- */
+.hg-label {
+  color: #a1a1aa !important; /* Brighter, highly legible gray */
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+}
+
+.hg-amount {
+  color: #ffffff !important; /* Force amounts to be pure white */
+  font-weight: 400 !important;
+  letter-spacing: -0.02em !important; 
+}
+
+/* --- Brutalist Buttons --- */
+.hg-btn-primary {
+  background-color: #ffffff !important; /* Stark white */
+  color: #000000 !important; /* Pitch black text */
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.hg-btn-primary:hover {
+  background-color: #e4e4e7 !important; /* Light gray hover */
+  transform: translateY(-2px);
+}
+
+.hg-btn-primary.Mui-disabled {
+  background-color: #27272a !important; /* Dark gray when disabled */
+  color: #71717a !important;
+}
+
+/* --- Table Styles --- */
+.hg-table-header {
+  color: #a1a1aa !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #27272a !important;
+}
+
+.hg-table-cell {
+  color: #ffffff !important;
+  font-weight: 400 !important;
+  border-bottom: 1px solid #1a1a1a !important;
+}
+
+/* Minimalist Transaction Indicators */
+.hg-tx-in { color: #ffffff !important; font-weight: 500 !important; }
+.hg-tx-out { color: #a1a1aa !important; font-weight: 500 !important; }
+
+/* Thin outlined chips */
+.hg-chip {
+  background-color: transparent !important;
+  border: 1px solid #3f3f46 !important;
+  color: #e4e4e7 !important;
+  font-weight: 500 !important;
+  border-radius: 4px !important;
+}
+
+/* ========================================= */
+/* THE AUTOFILL KILLER (Add this to the bottom) */
+/* ========================================= */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #121212 inset !important; /* Forces dark background */
+    -webkit-text-fill-color: #ffffff !important; /* Forces white text */
+    transition: background-color 5000s ease-in-out 0s;
+}
