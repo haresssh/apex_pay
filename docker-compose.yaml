@@ -51,6 +51,19 @@ services:
       - db
       - redis
 
+  # 6. The Frontend
+  frontend:
+    build: ./apex-pay-ui
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./apex-pay-ui:/app
+      - /app/node_modules # Prevents local node_modules from overwriting the container's
+    depends_on:
+      - web
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Helps Vite notice file changes across Docker volumes
+
 # THIS PART WAS MISSING: You must define the volumes at the bottom
 volumes:
   postgres_data:
