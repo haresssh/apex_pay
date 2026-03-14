@@ -2,6 +2,7 @@
 
 APEX PAY. is a full-stack, decoupled core banking application designed to handle secure wallet transactions. It features a robust Django/PostgreSQL backend utilizing atomic database locks for financial integrity, paired with a React frontend styled in a high-end, brutalist dark mode. 
 
+![APEX PAY. Dashboard](./screenshots/Screenshot%202026-03-14%20at%205.45.23 PM.png)
 
 ## Tech Stack
 
