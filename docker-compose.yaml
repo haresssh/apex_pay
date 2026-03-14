@@ -1,0 +1,56 @@
+services:
+  # 1. The Database
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  # 2. The Web Server
+  web:
+    build: .
+    command: /app/scripts/start-web.sh
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
+  # 3. The Message Broker
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+
+  # 4. The Background Worker
+  worker:
+    build: .
+    command: celery -A core worker -l info
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
+  # 5. The Scheduler
+  beat:
+    build: .
+    command: celery -A core beat -l info
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
+# THIS PART WAS MISSING: You must define the volumes at the bottom
+volumes:
+  postgres_data:

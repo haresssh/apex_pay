@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ApexPay - Dashboard</title>
+    <style>
+        .balance-card { padding: 20px; background: #2c3e50; color: white; border-radius: 8px; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #ddd; }
+        .outbound { color: #e74c3c; } /* Red for money sent */
+        .inbound { color: #27ae60; }  /* Green for money received */
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ account.user.username }}</h1>
+
+    <div class="balance-card">
+        <h2>Available Balance</h2>
+        <p style="font-size: 2em;">${{ account.balance }}</p>
+        <p>Acc: {{ account.account_number }}</p>
+    </div>
+
+    <a href="{% url 'transfer' %}" style="padding: 10px; background: #3498db; color: white; text-decoration: none; border-radius: 5px;">
+        Send Money
+    </a>
+
+    <h3>Recent Activity</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Details</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tx in sent %}
+            <tr>
+                <td>{{ tx.timestamp|date:"M d, H:i" }}</td>
+                <td>To: {{ tx.to_account.user.username }}</td>
+                <td class="outbound">-${{ tx.amount }}</td>
+            </tr>
+            {% endfor %}
+            
+            {% for tx in received %}
+            <tr>
+                <td>{{ tx.timestamp|date:"M d, H:i" }}</td>
+                <td>From: {{ tx.from_account.user.username }}</td>
+                <td class="inbound">+${{ tx.amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
